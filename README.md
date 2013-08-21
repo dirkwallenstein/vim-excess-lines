@@ -76,3 +76,10 @@ this:
 
 Note that each of the missing mode-keys of a specific filetype falls back to the
 one in the default entry `*` individually.
+
+Override Patterns
+-----------------
+It is possible to temporarily install a different match-setup in a buffer.  This
+can be useful if you repeatedly work with the same set of patterns.  For
+example, you could highlight several different patterns and copy each of them to
+the search register to jump to the matches.

@@ -129,6 +129,7 @@ endfun
 fun! s:GetMatchSetup()
     " The match setup can be overridden buffer locally.
     let l:variableList = [
+                \ "b:excess_lines_override_setup",
                 \ "b:excess_lines_match_setup",
                 \ "g:excess_lines_match_setup"
                 \ ]
@@ -353,6 +354,26 @@ fun! g:EL_GetActivePattern(index)
     endfor
     return ''
 endfun
+
+" ---
+
+fun! g:EL_InstallOverridePatterns(match_setup)
+    " Install a match-setup in the current buffer only.  The a:match_setup
+    " format is the same as for g:excess_lines_match_setup
+    call s:HideExcessLines()
+    let b:excess_lines_override_setup = a:match_setup
+    call s:ShowExcessLines()
+endfun
+
+fun! g:EL_UninstallOverridePatterns()
+    " Uninstall override patterns installed with g:EL_InstallOverridePatterns
+    " and return to the previous configuration.
+    call s:HideExcessLines()
+    unlet b:excess_lines_override_setup
+    call s:ShowExcessLines()
+endfun
+
+" ---
 
 " Turn the display of excess lines on/off or toggle it.
 command! ElShowExcessLines call <SID>ShowExcessLines()
