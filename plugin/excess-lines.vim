@@ -142,13 +142,15 @@ fun! s:GetMatchSpecs(mode)
     if !empty(&ft)
         try
             let l:ft_dict = l:match_setup[&ft]
-            return l:ft_dict[a:mode]
+            let l:ft_match_specs = l:ft_dict[a:mode]
+            return l:ft_match_specs
         catch /E716/ " Key not present in Dictionary
         endtry
     endif
     try
         let l:default_dict = l:match_setup['*']
-        return l:default_dict[a:mode]
+        let l:fallback_match_specs = l:default_dict[a:mode]
+        return l:fallback_match_specs
     catch /E716/ " Key not present in Dictionary
     endtry
     return []
