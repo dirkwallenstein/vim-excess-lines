@@ -83,3 +83,8 @@ It is possible to temporarily install a different match-setup in a buffer.  This
 can be useful if you repeatedly work with the same set of patterns.  For
 example, you could highlight several different patterns and copy each of them to
 the search register to jump to the matches.
+
+Documentation
+-------------
+There is documentation in the plugin-file `plugin/excess-lines.vim`.  See the
+top for configuration, and the bottom for public functions and commands.
