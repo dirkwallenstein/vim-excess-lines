@@ -43,15 +43,19 @@ if ! exists("g:excess_lines_match_setup")
     " insert mode.
     "
     " Can be overridden buffer locally.
-    highlight default link EL_EXP_InsertTail WarningMsg
     highlight EL_EXP_InsertTail gui=undercurl guisp=Magenta
+                \ term=reverse ctermfg=15 ctermbg=12
+    highlight EL_EXP_Warning guifg=Black guibg=Yellow
+                \ term=standout cterm=bold ctermfg=0 ctermbg=3
+    highlight EL_EXP_Error guifg=White guibg=Red
+                \ term=reverse cterm=bold ctermfg=7 ctermbg=1
 
     let s:exp_permanent_matches = [
-        \   ["LineNr", '\%81v.\+', -70],
+        \   ["EL_EXP_Error", '\%81v.\+', -70],
         \   ]
     let s:exp_insert_mode_matches = [
-        \   ["Todo",  '\zs\%70v.\ze.*\%#', -50],
-        \   ["Todo",  '\%#.*\zs\%70v.\ze', -50],
+        \   ["EL_EXP_Warning",  '\zs\%70v.\ze.*\%#', -50],
+        \   ["EL_EXP_Warning",  '\%#.*\zs\%70v.\ze', -50],
         \   ["EL_EXP_InsertTail",  '\%81v.\+\%#.*$', -50],
         \   ["EL_EXP_InsertTail",  '\%#.*\zs\%81v.\+\ze$', -50],
         \   ]
