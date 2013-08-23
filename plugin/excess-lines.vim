@@ -74,7 +74,7 @@ endif
 
 if !exists("g:excess_lines_off_filetypes")
     " A list of filetypes for which not to highlight excess-lines initially.
-    let g:excess_lines_off_filetypes = ['qf']
+    let g:excess_lines_off_filetypes = []
 endif
 
 if !exists("g:excess_lines_on_filetypes")
@@ -91,6 +91,11 @@ if !exists("g:textwidth_zero_turns_off_initially")
     let g:textwidth_zero_turns_off_initially = 0
 endif
 
+if !exists("g:excess_lines_off_buftypes")
+    " Buffer types for which to start in off mode.  This overrides the filetype
+    " specific configuration.
+    let g:excess_lines_off_buftypes = ['quickfix', 'nofile', 'nowrite', 'help']
+endif
 
 "
 " --- Diverse
@@ -116,11 +121,22 @@ fun! s:GetDisplayOnOffDefaultForFiletype()
     endif
 endfun
 
+function! s:IsOffBuftype()
+    let l:off_buftypes = filter(copy(g:excess_lines_off_buftypes),
+                \ 'v:val == &bt')
+    if empty(l:off_buftypes)
+        return 0
+    else
+        return 1
+    endif
+endfunction
+
 fun! s:GetDisplayOnOffDefault()
     if 0
                 \ || !&modifiable
                 \ || &wrap
                 \ || g:textwidth_zero_turns_off_initially && &tw == 0
+                \ || s:IsOffBuftype()
         return 0
     else
         return s:GetDisplayOnOffDefaultForFiletype()

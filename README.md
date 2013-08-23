@@ -15,8 +15,8 @@ just excess lines.
 - Match different patterns during insert and normal mode
 - Turn highlighting on/off or toggle it
 - Select in which filetypes to start in on/off mode
-- Start in off mode when the buffer is not modifiable or has the `wrap` option
-  set
+- Start in off mode when the buffer is not modifiable, has the `wrap` option
+  set, or has a particular buffer-type (configurable)
 - Extract patterns of installed matches to search for or act on affected lines
 
 
