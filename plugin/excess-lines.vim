@@ -85,10 +85,10 @@ if !exists("g:excess_lines_on_filetypes")
     let g:excess_lines_on_filetypes = []
 endif
 
-if !exists("g:textwidth_zero_turns_off_initially")
+if !exists("g:excess_lines_off_when_textwidth_zero")
     " Hide excess-lines initially if textwidth=0.  Set this variable to nonzero
     " if you want that.
-    let g:textwidth_zero_turns_off_initially = 0
+    let g:excess_lines_off_when_textwidth_zero = 0
 endif
 
 if !exists("g:excess_lines_off_buftypes")
@@ -135,7 +135,7 @@ fun! s:GetDisplayOnOffDefault()
     if 0
                 \ || !&modifiable
                 \ || &wrap
-                \ || g:textwidth_zero_turns_off_initially && &tw == 0
+                \ || g:excess_lines_off_when_textwidth_zero && &tw == 0
                 \ || s:IsOffBuftype()
         return 0
     else
