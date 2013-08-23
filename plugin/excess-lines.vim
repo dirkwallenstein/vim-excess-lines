@@ -116,6 +116,17 @@ fun! s:GetDisplayOnOffDefaultForFiletype()
     endif
 endfun
 
+fun! s:GetDisplayOnOffDefault()
+    if 0
+                \ || !&modifiable
+                \ || &wrap
+                \ || g:textwidth_zero_turns_off_initially && &tw == 0
+        return 0
+    else
+        return s:GetDisplayOnOffDefaultForFiletype()
+    endif
+endfun
+
 " ---
 
 fun! s:VariableFallback(variableList)
@@ -270,12 +281,7 @@ fun! s:InitializeBuffer_cond()
     if exists("b:excess_lines_show")
         return
     endif
-    let l:textwidth_off = g:textwidth_zero_turns_off_initially && &tw == 0
-    if &modifiable && !&wrap && !l:textwidth_off
-        let b:excess_lines_show = s:GetDisplayOnOffDefaultForFiletype()
-    else
-        let b:excess_lines_show = 0
-    endif
+    let b:excess_lines_show = s:GetDisplayOnOffDefault()
 endfun
 
 fun! s:SyncExcessLines()
