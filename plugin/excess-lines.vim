@@ -29,8 +29,8 @@ let loaded_excess_lines = 1
 
 if ! exists("g:excess_lines_match_setup")
     " A dictionary with filetype keys, or '*' as a fallback entry.  Each entry
-    " maps to another dictionary with tree possible keys 'permanent', 'insert',
-    " 'normal'.  Each maps to a list of lists of arguments to matchadd().
+    " maps to another dictionary with three possible keys: 'permanent', 'insert'
+    " and 'normal'.  Each maps to a list of lists of arguments to matchadd().
     "
     "       [["highlight-group", 'pattern', priority], ...]
     "
@@ -131,7 +131,7 @@ fun! s:VariableFallback(variableList)
 endfun
 
 fun! s:GetMatchSetup()
-    " The match setup can be overridden buffer locally.
+    " The match setup can be overridden buffer locally.  Return the active one.
     let l:variableList = [
                 \ "b:excess_lines_override_setup",
                 \ "b:excess_lines_match_setup",
@@ -166,7 +166,7 @@ endfun
 "
 
 fun! s:InstallMatches_ABS(all_specs, record_var_name)
-    " Install a the match specifications given in the list a:all_specs and
+    " Install the match specifications given in the list a:all_specs and
     " record them in the variable given in a:record_var_name.  Deletes existing
     " matches recorded in a:record_var_name first.
     if !b:excess_lines_show
