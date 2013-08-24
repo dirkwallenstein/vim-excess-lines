@@ -27,11 +27,16 @@ matches.  The keys are filetypes to which the values apply.  Each value is
 another dictionary where the keys are the mode in which the list of
 match-specifications they map to are active.
 
+There is one special key `*` that applies to all filetypes without a key.
+
 The three valid modes are:
 
 - `'permanent'` : active in all modes
 - `'insert'` : only active in insert mode
 - `'normal'` : only active when not in insert mode
+
+Note that each of the missing mode-keys of a specific filetype falls back to the
+one in the default entry `*` individually.
 
 For example, to add special behavior for `markdown` files you can add an entry
 similar to this one:
@@ -73,9 +78,6 @@ this:
         \ 'html': { 'permanent': ["Error", '\%91v.\+', -50]},
         \ 'text': { 'permanent': ["Error", '\%101v.\+', -50]},
         \ }
-
-Note that each of the missing mode-keys of a specific filetype falls back to the
-one in the default entry `*` individually.
 
 Display
 -------
