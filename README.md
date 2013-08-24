@@ -77,12 +77,42 @@ this:
 Note that each of the missing mode-keys of a specific filetype falls back to the
 one in the default entry `*` individually.
 
+Display
+-------
+Use the following commands to turn the display in one buffer on/off or toggle
+it:
+
+    ElShowExcessLines
+    ElHideExcessLines
+    ElToggleExcessLines
+
+Active Patterns
+---------------
+You can extract the patterns of active matches by index (zero based).  The
+permanent patterns come first and then either insert or normal mode patterns.
+
+The idea is to have one special position (most likely the first) with the main
+pattern, so that you can work with it.  This is the command defined by this
+plugin to set the search pattern to the first match:
+
+    ElSetSearchPatternToFirstActivePattern
+
+Use the following function to access any active match pattern.
+
+    g:EL_GetActivePattern(index)
+
 Override Patterns
 -----------------
 It is possible to temporarily install a different match-setup in a buffer.  This
 can be useful if you repeatedly work with the same set of patterns.  For
 example, you could highlight several different patterns and copy each of them to
 the search register to jump to the matches.
+
+Use these functions to work with override patterns.  The argument `match_setup`
+is a dictionary with the same format as `g:excess_lines_match_setup`:
+
+    call g:EL_InstallOverridePatterns(match_setup)
+    call g:EL_UninstallOverridePatterns()
 
 Documentation
 -------------
