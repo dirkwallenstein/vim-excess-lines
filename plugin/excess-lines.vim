@@ -57,7 +57,6 @@ if ! exists("g:excess_lines_match_setup")
         \   ["EL_EXP_Warning",  '\zs\%70v.\ze.*\%#', -50],
         \   ["EL_EXP_Warning",  '\%#.*\zs\%70v.\ze', -50],
         \   ["EL_EXP_InsertTail",  '\%81v.\+\%#.*$', -50],
-        \   ["EL_EXP_InsertTail",  '\%#.*\zs\%81v.\+\ze$', -50],
         \   ]
     let s:exp_normal_mode_matches = []
 
