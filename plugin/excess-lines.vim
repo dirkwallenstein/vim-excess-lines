@@ -16,7 +16,7 @@
 " Author: Dirk Wallenstein
 " Description: Highlight surplus characters of long lines
 " License: LGPLv3
-" Version: 0.0.0
+" Version: 1.0.0
 
 if exists('loaded_excess_lines')
     finish
