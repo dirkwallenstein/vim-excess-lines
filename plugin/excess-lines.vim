@@ -47,7 +47,7 @@ if ! exists("g:excess_lines_match_setup")
                 \ term=reverse ctermfg=15 ctermbg=12
     highlight EL_EXP_Warning guifg=Black guibg=Yellow
                 \ term=standout cterm=bold ctermfg=0 ctermbg=3
-    highlight EL_EXP_Error guifg=White guibg=Red
+    highlight EL_EXP_Error guifg=White guibg=Firebrick
                 \ term=reverse cterm=bold ctermfg=7 ctermbg=1
 
     let s:exp_permanent_matches = [
