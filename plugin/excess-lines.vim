@@ -377,7 +377,7 @@ fun! g:EL_GetActivePattern(index)
             return l:matchrecord['pattern']
         endif
     endfor
-    return ''
+    throw "ERROR: recorded id not found per getmatches()"
 endfun
 
 " ---
