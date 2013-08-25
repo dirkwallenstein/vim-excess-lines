@@ -221,7 +221,7 @@ fun! s:DeleteMatches_ABS(record_var_name)
 endfun
 
 "
-" --- Override Matches
+" --- Permanent Matches
 "
 
 fun! s:GetPermanentMatchSpecs()
