@@ -84,10 +84,17 @@ if !exists("g:excess_lines_on_filetypes")
     let g:excess_lines_on_filetypes = []
 endif
 
-if !exists("g:excess_lines_off_when_textwidth_zero")
-    " Hide excess-lines initially if textwidth=0.  Set this variable to nonzero
-    " if you want that.
-    let g:excess_lines_off_when_textwidth_zero = 0
+if !exists("g:excess_lines_off_conditions")
+    " Conditions for which to start in off mode.  This overrides the filetype
+    " specific configuration.  These are strings that can be evaluated with
+    " eval().  You can also add function calls like 'MyComplexCondition()'.
+    let g:excess_lines_off_conditions = ['!&modifiable', '&wrap']
+    if exists("g:excess_lines_off_when_textwidth_zero")
+                \ && g:excess_lines_off_when_textwidth_zero
+        echoerr "WARNING: deprecated variable used: "
+                    \ . "g:excess_lines_off_when_textwidth_zero"
+        call add(g:excess_lines_off_conditions, '&tw==0')
+    endif
 endif
 
 if !exists("g:excess_lines_off_buftypes")
@@ -130,12 +137,19 @@ function! s:IsOffBuftype()
     endif
 endfunction
 
+fun! s:IsOffCondition()
+    " Return 1 if any of the conditions in g:excess_lines_off_conditions
+    " evaluates to true.
+    for l:condition in g:excess_lines_off_conditions
+        if eval(l:condition)
+            return 1
+        endif
+    endfor
+    return 0
+endfun
+
 fun! s:GetDisplayOnOffDefault()
-    if 0
-                \ || !&modifiable
-                \ || &wrap
-                \ || g:excess_lines_off_when_textwidth_zero && &tw == 0
-                \ || s:IsOffBuftype()
+    if s:IsOffCondition() || s:IsOffBuftype()
         return 0
     else
         return s:GetDisplayOnOffDefaultForFiletype()
