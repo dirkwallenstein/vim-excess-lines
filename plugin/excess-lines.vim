@@ -89,12 +89,6 @@ if !exists("g:excess_lines_off_conditions")
     " specific configuration.  These are strings that can be evaluated with
     " eval().  You can also add function calls like 'MyComplexCondition()'.
     let g:excess_lines_off_conditions = ['!&modifiable', '&wrap']
-    if exists("g:excess_lines_off_when_textwidth_zero")
-                \ && g:excess_lines_off_when_textwidth_zero
-        echoerr "WARNING: deprecated variable used: "
-                    \ . "g:excess_lines_off_when_textwidth_zero"
-        call add(g:excess_lines_off_conditions, '&tw==0')
-    endif
 endif
 
 if !exists("g:excess_lines_off_buftypes")
