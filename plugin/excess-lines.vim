@@ -302,6 +302,7 @@ endfun
 fun! s:ReInitBuffer()
     " Setup excess lines for this buffer anew
     if exists("b:excess_lines_show")
+        call s:HideExcessLines()
         unlet b:excess_lines_show
     endif
     call s:SyncExcessLines()
