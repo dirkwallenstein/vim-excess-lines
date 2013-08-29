@@ -299,6 +299,14 @@ fun! s:SwitchToMode(new_mode)
     endif
 endfun
 
+fun! s:ReInitBuffer()
+    " Setup excess lines for this buffer anew
+    if exists("b:excess_lines_show")
+        unlet b:excess_lines_show
+    endif
+    call s:SyncExcessLines()
+endfun
+
 fun! s:InitializeBuffer_cond()
     " Determine the initial state of the display (on/off)
     if exists("b:excess_lines_show")
@@ -351,7 +359,8 @@ endfun
 "
 
 " The entry point:
-autocmd WinEnter,BufWinEnter,ColorScheme,FileType * call <SID>SyncExcessLines()
+autocmd WinEnter,BufWinEnter,ColorScheme * call <SID>SyncExcessLines()
+autocmd FileType * call <SID>ReInitBuffer()
 " Insert mode matches are added/removed by autocommands:
 autocmd InsertEnter * call <SID>SwitchToMode("insert")
 autocmd InsertLeave * call <SID>SwitchToMode("normal")
