@@ -94,7 +94,7 @@ endif
 if !exists("g:excess_lines_off_buftypes")
     " Buffer types for which to start in off mode.  This overrides the filetype
     " specific configuration.
-    let g:excess_lines_off_buftypes = ['quickfix', 'nofile', 'nowrite', 'help']
+    let g:excess_lines_off_buftypes = ['quickfix', 'nofile', 'help']
 endif
 
 "
