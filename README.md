@@ -1,3 +1,5 @@
+**Update**: for a more general solution take a look at [vim-match-control][]
+
 Vim Excess Lines
 ================
 
@@ -120,3 +122,5 @@ Documentation
 -------------
 There is documentation in the plugin-file `plugin/excess-lines.vim`.  See the
 top for configuration, and the bottom for public functions and commands.
+
+  [vim-match-control]: https://github.com/dirkwallenstein/vim-match-control
